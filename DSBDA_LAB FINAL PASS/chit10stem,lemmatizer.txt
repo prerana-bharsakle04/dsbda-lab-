@@ -1,0 +1,50 @@
+chit10:stem,lemmatizer
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+nltk.download("punkt")
+nltk.download("stopwords")
+nltk.download("wordnet")
+
+
+sample_document = "This is a sample document. It contains some text that we will use for preprocessing."
+
+
+
+# Tokenize the document into words
+tokens = word_tokenize(sample_document)
+print("Tokens:", tokens)
+
+
+# Apply part-of-speech tagging to the tokens
+tagged_tokens = nltk.pos_tag(tokens)
+print("Tagged Tokens:", tagged_tokens)
+
+
+
+# Remove stop words from the tokens
+stop_words = set(stopwords.words("english"))
+filtered_tokens = [token for token in tokens if token.lower() not in stop_words]
+print("Filtered Tokens:", filtered_tokens)
+
+
+
+# Initialize the Porter stemmer
+stemmer = PorterStemmer()
+
+# Apply stemming to the filtered tokens
+stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+print("Stemmed Tokens:", stemmed_tokens)
+
+
+
+# Initialize the WordNet lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Apply lemmatization to the filtered tokens
+lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+print("Lemmatized Tokens:", lemmatized_tokens)
+

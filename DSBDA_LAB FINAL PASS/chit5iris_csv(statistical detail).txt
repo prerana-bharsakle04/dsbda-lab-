@@ -1,0 +1,30 @@
+chit5:iris_csv(statistical detail)
+
+import pandas as pd 
+df =pd.read_csv('iris.csv')
+print(df)
+
+
+# Provide summary statistics for sepal length grouped by species
+grouped = df.groupby('species')['SepalLengthCm']
+summary = grouped.describe()
+print(summary)
+
+
+
+# Create a list that contains a numeric value for each response to the categorical variable
+species_values = {'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2}
+df['species_values'] = df['species'].map(species_values)
+df
+
+
+# Display some basic statistical details for each species
+for species, group in df.groupby('species'):
+    print(f"Species: {species}")
+    print(f"Number of instances: {len(group)}")
+    print(f"Mean sepal length: {group['SepalLengthCm'].mean()}")
+    print(f"Standard deviation of sepal length: {group['SepalLengthCm'].std()}")
+    print(f"25th percentile of sepal length: {group['SepalLengthCm'].quantile(0.25)}")
+    print(f"Median of sepal length: {group['SepalLengthCm'].median()}")
+    print(f"75th percentile of sepal length: {group['SepalLengthCm'].quantile(0.75)}")
+    print(f"Maximum sepal length: {group['SepalLengthCm'].max()}\n")

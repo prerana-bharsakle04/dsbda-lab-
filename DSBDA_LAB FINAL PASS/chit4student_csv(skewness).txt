@@ -1,0 +1,40 @@
+chit4:student_csv(skewness)
+
+
+import pandas as pd
+df=pd.read_csv('student_data.csv')
+print(df)
+
+
+df.describe()
+
+
+print(df.isnull().sum())
+
+
+print(df.info())
+
+
+print(df['sex'].value_counts())
+
+
+df = df.dropna()
+
+
+df['sex'] = df['sex'].astype('category')
+df
+
+
+
+import numpy as np
+from scipy.stats import skew
+
+
+print(skew(df['age']))
+
+
+df['age'] = np.log(df['age'])
+df
+
+
+print(skew(df['age']))

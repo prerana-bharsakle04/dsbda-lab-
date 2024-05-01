@@ -1,0 +1,36 @@
+chit 2: data.csv (min-max)
+
+import pandas as pd 
+df=pd.read_csv('data.csv')
+print(df)
+
+
+df.describe()
+
+
+df.info()
+
+
+df.isnull()
+df
+
+
+df.isnull().sum().sum()
+
+
+
+df['Age']=df['Age'].fillna(20)
+print(df)
+
+
+print(df.dtypes)
+
+
+df['Age'] = df['Age'].astype(int)
+
+
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df[['Age', 'Fare']] = scaler.fit_transform(df[['Age', 'Fare']])
+df

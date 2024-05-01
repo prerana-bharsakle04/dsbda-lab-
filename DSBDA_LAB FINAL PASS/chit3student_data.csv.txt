@@ -1,0 +1,57 @@
+chit3:student_data.csv
+
+
+import pandas as pd
+df=pd.read_csv('student_data.csv')
+print(df)
+
+
+df.describe()
+
+
+print(df.isnull().sum())
+
+
+print(df.info())
+
+
+print(df['sex'].value_counts())
+
+
+df = df.dropna()
+
+
+df['sex'] = df['sex'].astype('category')
+df
+
+
+print(df.describe())
+
+
+q1=df.health.quantile(0.25)
+q3=df.health.quantile(0.75)
+q1,q3
+
+
+IQR=q3-q1
+IQR
+
+
+df['zscore'] = (df.age-df.age.mean())/df.age.std()
+df
+
+
+
+import seaborn as sns 
+sns.boxplot(df['age'])
+
+
+import matplotlib.pyplot as plt 
+fig, ax = plt.subplots(figsize = (10,6))
+ax.scatter(df['health'], df['age'])
+ax.set_xlabel('health')
+ax.set_ylabel('age')
+plt.show()
+
+
+

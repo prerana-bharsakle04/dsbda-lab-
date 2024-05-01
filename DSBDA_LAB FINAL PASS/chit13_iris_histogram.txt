@@ -1,0 +1,64 @@
+chit13_iris_histogram
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+data1 = pd.read_csv("Iris.csv")
+data1.head()
+
+
+
+print(data1.columns)
+
+
+#anotherway
+column = list(data1)
+print(column)
+
+
+data1.info()
+
+
+data1.dtypes
+
+
+data1.hist()
+
+
+fig, axes = plt.subplots(2, 2, figsize=(16, 8))
+
+axes[0,0].set_title("Distribution of First Column")
+axes[0,0].hist(data1["SepalLengthCm"]);
+
+axes[0,1].set_title("Distribution of Second Column")
+axes[0,1].hist(data1["SepalWidthCm"]);
+
+axes[1,0].set_title("Distribution of Third Column")
+axes[1,0].hist(data1["PetalLengthCm"]);
+
+axes[1,1].set_title("Distribution of Fourth Column")
+axes[1,1].hist(data1["PetalWidthCm"]);
+
+
+data1.boxplot()
+
+
+
+data_to_plot = [data1["SepalLengthCm"],data1["SepalWidthCm"],data1["PetalLengthCm"],data1["PetalWidthCm"]]
+# Creating a figure instance
+fig = plt.figure(1, figsize=(12,8))
+# Creating an axes instance
+ax = fig.add_subplot(111)
+# Creating the boxplot
+bp = ax.boxplot(data_to_plot);
+
+
+
+sns.boxplot(data1['SepalWidthCm'])
+
+
+print(np.where(data1['SepalWidthCm']>4.0))

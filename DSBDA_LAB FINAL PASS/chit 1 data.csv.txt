@@ -1,0 +1,52 @@
+chit 1: data.csv
+
+import pandas as pd 
+df=pd.read_csv('data.csv')
+print(df)
+
+
+df.describe()
+
+
+df.info()
+
+df['Age'].value_counts()
+
+
+df.isnull()
+df
+
+
+df.isnull().sum().sum()
+
+
+df.dtypes
+
+
+df.head(5)
+
+
+df.shape
+
+
+df.size
+
+df['Age']=df['Age'].fillna(20)
+print(df)
+
+
+df['Age'] = df['Age'].astype('float64')
+print(df.dtypes)
+
+
+from sklearn.preprocessing import LabelEncoder
+# creating instance of labelencoder
+labelencoder = LabelEncoder()
+# Assigning numerical values and storing in another column
+df['Labelencoding_Name'] = labelencoder.fit_transform(df["Name"])
+df
+
+
+df['Labelencoding_Name'].value_counts()
+
+

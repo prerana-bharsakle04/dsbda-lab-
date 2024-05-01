@@ -1,0 +1,66 @@
+chit14:iris-outlier
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+
+data1 = pd.read_csv('Iris.csv')
+data1.head()
+
+
+
+print(data1.columns)
+
+
+
+
+#anotherway
+column = list(data1)
+print(column)
+
+
+
+data1.info()
+
+
+
+
+data1.dtypes
+
+
+
+data1.hist()
+
+
+fig, axes = plt.subplots(2, 2, figsize=(16, 8))
+
+axes[0,0].set_title("Distribution of First Column")
+axes[0,0].hist(data1["SepalLengthCm"]);
+
+axes[0,1].set_title("Distribution of Second Column")
+axes[0,1].hist(data1["SepalWidthCm"]);
+
+axes[1,0].set_title("Distribution of Third Column")
+axes[1,0].hist(data1["PetalLengthCm"]);
+
+axes[1,1].set_title("Distribution of Fourth Column")
+axes[1,1].hist(data1["PetalWidthCm"]);
+
+
+
+
+print(np.where(data1['SepalWidthCm']>4.0))
+data1 = pd.DataFrame({'SepalWidthCm': [15, 32, 33]})
+
+# Get indices where SepalWidthCm > 4.0
+outlier_indices = np.where(data1['SepalWidthCm'] > 4.0)[0]
+
+# Extract outliers
+outliers = data1.loc[outlier_indices]
+
+print("Outliers:")
+print(outliers)
